@@ -1,7 +1,7 @@
-_G.isFarm = true;
-_G.isRebirth = true;
-_G.isExp = true;
-_G.isBuyPets = true;
+getgenv().isFarm = false;
+getgenv().isRebirth = false;
+getgenv().isExp = false;
+getgenv().isBuyPets = false;
 
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 
@@ -37,7 +37,7 @@ end)
 function autoSteps()
     spawn(
         function()
-            while _G.isFarm do
+            while getgenv().isFarm do
                 local A_1 = "collectOrb"
                 local A_2 = "Red Orb"
                 local A_3 = "City"
@@ -54,12 +54,13 @@ end
 function autoExp()
     spawn(
         function()
-            while _G.isExp do
+            while getgenv().isExp do
                 local A_1 = "collectOrb"
                 local A_2 = "Yellow Orb"
                 local A_3 = "City"
                 local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent
                 Event:FireServer(A_1, A_2, A_3)
+                wait(0.01)
             end
         end
     )
@@ -68,7 +69,7 @@ end
 function autoRebirth()
     spawn(
         function()
-            while _G.isRebirth do
+            while getgenv().isRebirth do
                 local A_1 = "\114\101\98\105\114\116\104\82\101\113\117\101\115\116"
                 local Event = game:GetService("ReplicatedStorage").rEvents.rebirthEvent
                 Event:FireServer(A_1)
@@ -77,6 +78,3 @@ function autoRebirth()
         end
     )
 end
-
-autoSteps()
-autoRebirth()
